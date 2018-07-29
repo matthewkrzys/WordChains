@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import reader.ReadDataFromFile;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.stream.Collectors;
 
 
@@ -18,7 +19,9 @@ public class WordChains {
         logger.info(TAG+" Args "+ Arrays.stream(args).collect(Collectors.toList()));
         manager.setWords(args);
         if(manager.checkLengthWords()) {
-            manager.getResult(manager.getWordsData(new ReadDataFromFile(), args[2]),new AlgorithmWithMap())
+            Collection result=manager.getResult(manager.getWordsData(new ReadDataFromFile(), args[2]),new AlgorithmWithMap());
+            if(result!=null)
+                result
                     .stream()
                     .forEach(System.out::println);
         }
