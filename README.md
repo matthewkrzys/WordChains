@@ -1,5 +1,5 @@
 # WordChains
-##Run
+## Run
 This command run in project's catalog. 
 
 gradle fatJar
