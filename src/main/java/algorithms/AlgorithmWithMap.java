@@ -18,6 +18,7 @@ public class AlgorithmWithMap implements Algorithm {
     private int counterSetChar;
     private int counterChar;
     private int errorCounter;
+    private int counterTrialFindWords;
     private StringBuilder currentWord;
     private StringBuilder lastGoogWord;
     private StringBuilder firstWord;
@@ -63,7 +64,8 @@ public class AlgorithmWithMap implements Algorithm {
 
     private void prepareVariables(){
         listResult = new ArrayList<>();
-        setValueInCaunters(0,1,0);
+        counterTrialFindWords =0;
+        setValueInCounters(0,1,0);
         currentWord = new StringBuilder(firstWord);
         logger.info(TAG + " currentWord " + currentWord);
         lastGoogWord = new StringBuilder(firstWord);
@@ -89,12 +91,16 @@ public class AlgorithmWithMap implements Algorithm {
                 if (errorCounter == currentWord.length()) {
                     notFindWord();
                 }
+                if (counterTrialFindWords ==currentWord.length()){
+                    System.out.println("I can not find words");
+                    return null;
+                }
             }
         }
         return listResult;
 
     }
-    private void setValueInCaunters(int counterSetChar,int counterChar,int errorCounter){
+    private void setValueInCounters(int counterSetChar, int counterChar, int errorCounter){
         this.counterSetChar = counterSetChar;
         this.counterChar = counterChar;
         this.errorCounter = errorCounter;
@@ -103,14 +109,15 @@ public class AlgorithmWithMap implements Algorithm {
         lastGoogWord.replace(0, firstWord.length(), firstWord.toString());
         currentWord.replace(0, firstWord.length(), firstWord.toString());
         word.setCheckCharInWord(new boolean[firstWord.length()]);
-        setValueInCaunters(0,2,0);
+        counterTrialFindWords++;
+        setValueInCounters(0,2,0);
         listResult = new ArrayList<>();
         listResult.add(firstWord.toString());
     }
     private void isInDictionary(){
         logger.info(TAG + " word " + counterChar + " is in dictionary");
         word.getCheckCharInWord()[counterChar] = true;
-        setValueInCaunters(counterSetChar++,1,0);
+        setValueInCounters(counterSetChar++,1,0);
         lastGoogWord.replace(0, currentWord.length(), currentWord.toString());
         logger.info(TAG + " lastGoodWord " + lastGoogWord);
         listResult.add(lastGoogWord.toString());
