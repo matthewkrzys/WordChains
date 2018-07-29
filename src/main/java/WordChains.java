@@ -21,9 +21,7 @@ public class WordChains {
         if(manager.checkLengthWords()) {
             Collection result=manager.getResult(manager.getWordsData(new ReadDataFromFile(), args[2]),new AlgorithmWithMap());
             if(result!=null)
-                result
-                    .stream()
-                    .forEach(System.out::println);
+                result.stream().forEach(System.out::println);
         }
         else {
             logger.error(TAG+" Words have different length");

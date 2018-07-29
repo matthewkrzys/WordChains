@@ -30,12 +30,12 @@ public class AlgorithmWithMapTest {
         secondWord=new StringBuilder("dog");
     }
     @Test
-    public void setDictionaryTest(){
+    public void setDictionary_Test(){
         algorithmWithMap.setDictionary(collection);
         Assert.assertTrue(algorithmWithMap.getDictionary().containsAll(collection));
     }
     @Test
-    public void getResultTest(){
+    public void getResult_Test(){
         algorithmWithMap.setDictionary(collection);
         List<String> listResult= (List<String>) algorithmWithMap.getResult(firstWord,secondWord);
         Assert.assertTrue(listResult.containsAll(Arrays.asList("cat","cot","cog","dog")));

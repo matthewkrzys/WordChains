@@ -27,7 +27,7 @@ public class ReadDataFromFileTest {
         collection.add("log");
     }
     @Test
-    public void readDataTest(){
+    public void readData_Test(){
         when(readDataFromFile.readData(any(String.class),any(Long.class))).thenReturn(collection);
         Collection result=readDataFromFile.readData("wordlist.txt",7);
         Assert.assertTrue(result.containsAll(collection));
